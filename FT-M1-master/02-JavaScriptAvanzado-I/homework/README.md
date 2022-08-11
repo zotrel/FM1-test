@@ -6,33 +6,33 @@
 Determiná que será impreso en la consola, sin ejecutar el código.
 
 > Investiga cuál es la diferencia entre declarar una variable con `var` y directamente asignarle un valor.
-
+// es pisar el valor. Asignar "var" implica un valor en un contexto que puede ser pisado en el mismo o en otro. 
 ```javascript
-x = 1;
+x = 1; //1ra caj Global
 var a = 5;
 var b = 10;
-var c = function(a, b, c) {
+var c = function(a, b, c) {//2da cajita
   var x = 10;
-  console.log(x);
-  console.log(a);
-  var f = function(a, b, c) {
-    b = a;
-    console.log(b);
-    b = c;
+  console.log(x);//10
+  console.log(a);//5
+  var f = function(a, b, c) {// tercer caj 
+    b = a;//a=5
+    console.log(b);//b=5
+    b = c;//c=5
     var x = 5;
   }
   f(a,b,c);
-  console.log(b);
+  console.log(b);//b=5
 }
 c(8,9,10);
-console.log(b);
-console.log(x);
+console.log(b);//b=9
+console.log(x);//x=1
 ```
 
 ```javascript
-console.log(bar);
-console.log(baz);
-foo();
+console.log(bar);//undef
+console.log(baz);//undef
+foo();//Hola
 function foo() { console.log('Hola!'); }
 var bar = 1;
 baz = 2;
@@ -43,19 +43,19 @@ var instructor = "Tony";
 if(true) {
     var instructor = "Franco";
 }
-console.log(instructor);
+console.log(instructor);//crash. 
 ```
 
 ```javascript
 var instructor = "Tony";
-console.log(instructor);
+console.log(instructor);//Tony
 (function() {
    if(true) {
       var instructor = "Franco";
       console.log(instructor);
    }
 })();
-console.log(instructor);
+console.log(instructor);//Tony (No llama la fuc sino la var)
 ```
 
 ```javascript
@@ -64,19 +64,19 @@ let pm = "Franco";
 if (true) {
     var instructor = "The Flash";
     let pm = "Reverse Flash";
-    console.log(instructor);
-    console.log(pm);
+    console.log(instructor);//The Flash
+    console.log(pm);//Reverse Flash
 }
-console.log(instructor);
-console.log(pm);
+console.log(instructor);//Tony
+console.log(pm);//Franco
 ```
 ### Coerción de Datos
 
 ¿Cuál crees que será el resultado de la ejecución de estas operaciones?:
 
 ```javascript
-6 / "3"
-"2" * "3"
+6 / "3"//6/3
+"2" * "3"//
 4 + 5 + "px"
 "$" + 4 + 5
 "4" - 2

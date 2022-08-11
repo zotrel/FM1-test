@@ -2,7 +2,17 @@
 
 // Closures
 
-function counter() {
+function counter(contador) {
+  let cont = 0;
+  return function counters ()
+{
+ cont++;
+ return cont;
+}
+
+
+  
+
   /*
   Ejercicio 1
 
@@ -22,6 +32,12 @@ function counter() {
 }
 
 function cacheFunction(cb) {
+  let obj = {}
+  return function(arg){
+    obj[arg]= cb[arg]
+    return obj.arg;
+  }
+
   /*
   Ejercicio 2
 
@@ -67,8 +83,10 @@ function getNombre() {
   Usando el método bind() guardar, en las dos variables declaradas a continuación, dos funciones que actúen como getNombre pero retornen el nombre del instructor y del alumno, respectivamente.
 */
 
-let getNombreInstructor;
-let getNombreAlumno;
+let getNombreInstructor = getNombre.bind(instructor);
+
+let getNombreAlumno = getNombre.bind(alumno);
+
 
 /*
   Ejercicio 4
